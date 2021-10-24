@@ -21,11 +21,20 @@
 // SOFTWARE.
 
 
-import * as types from '../../constants/action-types';
+import { FC } from "react"
+import * as Lib from './lib';
+import { Header } from "../../../components/header";
 
-export const test = (payload: number) => {
-  return {
-    type: types.TEST,
-    payload
-  }
+export const AppsLayout: FC = ({ children }): JSX.Element => {
+
+  return (
+    <Lib.S.AppsLayoutContainer>
+      <Header />
+      <div id='app'>
+        {children &&
+          children
+        }
+      </div>
+    </Lib.S.AppsLayoutContainer>
+  )
 }

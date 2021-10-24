@@ -21,11 +21,14 @@
 // SOFTWARE.
 
 
-import * as types from '../../constants/action-types';
+import { FC } from 'react';
+import * as Lib from './lib';
 
-export const test = (payload: number) => {
-  return {
-    type: types.TEST,
-    payload
-  }
+export const Header: FC = (): JSX.Element => {
+
+  return (
+    <Lib.S.HeaderContainer>
+      
+    </Lib.S.HeaderContainer>
+  )
 }

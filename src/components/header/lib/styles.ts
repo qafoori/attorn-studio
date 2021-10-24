@@ -21,11 +21,8 @@
 // SOFTWARE.
 
 
-import * as types from '../../constants/action-types';
+import styled from "styled-components";
 
-export const test = (payload: number) => {
-  return {
-    type: types.TEST,
-    payload
-  }
-}
+export const HeaderContainer = styled.div`
+  
+`;

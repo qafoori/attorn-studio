@@ -22,3 +22,6 @@
 
 
 import './app';
+import { LogLicense } from '../scripts/license-logger';
+
+LogLicense();

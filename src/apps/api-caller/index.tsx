@@ -21,11 +21,10 @@
 // SOFTWARE.
 
 
-import * as types from '../../constants/action-types';
+import { FC } from "react"
 
-export const test = (payload: number) => {
-  return {
-    type: types.TEST,
-    payload
-  }
+export const APICaller: FC = (): JSX.Element => {
+  return (
+    <>api caller</>
+  )
 }
