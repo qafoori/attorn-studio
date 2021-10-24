@@ -21,11 +21,19 @@
 // SOFTWARE.
 
 
-import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { AppEntryPoint } from './entry';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const render = () => {
-  ReactDOM.render(<h2>Hello from React!</h2>, document.body);
+
+  ReactDOM.render(
+    <Provider store={store}>
+      <AppEntryPoint />
+    </Provider>
+    , document.getElementById('attorn')
+  );
 }
 
 render();
