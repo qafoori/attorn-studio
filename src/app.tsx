@@ -24,12 +24,14 @@
 import * as ReactDOM from 'react-dom';
 import { AppEntryPoint } from './entry';
 import { Provider } from 'react-redux';
+import { GlobalStyles } from './styles/glob-styles';
 import store from './store';
 
 const render = () => {
 
   ReactDOM.render(
     <Provider store={store}>
+      <GlobalStyles />
       <AppEntryPoint />
     </Provider>
     , document.getElementById('attorn')

@@ -24,5 +24,8 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
-  
+  float: left;
+  width: 100%;
+  height: 40px;
+  background-color: #1d1b1b;
 `;

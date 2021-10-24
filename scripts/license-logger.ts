@@ -20,9 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import { ATTORN_MIT_LICENSE as L } from '../license/MIT';
+import { ATTORN_MIT_LICENSE } from '../license/MIT';
+const { title, titleStyle, copyright, description, condition1, condition2, textStyle, link } = ATTORN_MIT_LICENSE;
 
 export const LogLicense = () => {
-  console.log(`%c${L.title}`, 'background: #1d1b1b; color: #ec4d37; font-size: 20px; padding: 10px 30px; border-radius: 10px; font-family: arial');
-  console.log(`%c${L.copyright}\n${L.description}\n${L.condition1}\n${L.condition2}`, 'background: #1d1b1b; color: #dbdbdb; font-size: 12px; padding: 10px 30px; font-weight: 700; line-height: 2; font-family: arial');
+  console.log(title, titleStyle);
+  console.log(`${copyright}\n${description}\n${condition1}\n${condition2}\n${link}`, textStyle);
 }
