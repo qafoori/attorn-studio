@@ -21,11 +21,7 @@
 // SOFTWARE.
 
 
-import styled from "styled-components";
+import '../react/app.tsx';
+import { LogLicense } from '../../../scripts/license-logger';
 
-export const HeaderContainer = styled.div`
-  float: left;
-  width: 100%;
-  height: 40px;
-  background-color: #1d1b1b;
-`;
+LogLicense();

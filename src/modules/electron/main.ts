@@ -21,7 +21,10 @@
 // SOFTWARE.
 
 
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
+import { initializeTheme, installTheme, uninstallTheme, changeTheme } from '@attorn/electron-theme'
+import { AttornElectronTheme } from '@attorn/electron-theme'
+import { themes } from '../../common/constants/themes';
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 
 
@@ -33,6 +36,12 @@ const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+    minHeight: 250,
+    minWidth: 400
   });
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
   mainWindow.webContents.openDevTools();
@@ -51,3 +60,24 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+
+
+ipcMain.on('before-ready-to-show', ({ sender }) => {
+  const { allThemes, activeTheme, root } = initializeTheme(themes);
+  sender.send('get-css-root', root);
+})
+
+
+ipcMain.on('install-theme', (_, { name, theme }: AttornElectronTheme.Themes) => {
+  installTheme({ name, theme });
+})
+
+ipcMain.on('uninstall-theme', (_, msg: AttornElectronTheme.Themes) => {
+  uninstallTheme(msg.name);
+})
+
+// ipcMain.on('change-theme', ({ sender }, msg: string) => {
+//   const result = changeTheme(msg)
+//   sender.send('change-theme-result', result);
+// })

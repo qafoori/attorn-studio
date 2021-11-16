@@ -29,6 +29,11 @@ rules.push({
   use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
 });
 
+rules.push({
+  test: /\.ttf$/,
+  use: [{ loader: 'url-loader' }],
+});
+
 module.exports = {
   module: {
     rules,
@@ -37,4 +42,5 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css']
   },
+  target: 'electron-renderer'
 };

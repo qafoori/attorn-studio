@@ -20,12 +20,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import { FC } from "react";
-import { APICaller } from "./apps/api-caller";
-import { AppsLayout } from "./components/layouts/apps-layout";
 
-export const AppEntryPoint: FC = (): JSX.Element => (
-  <AppsLayout>
-    <APICaller />
-  </AppsLayout>
-);
+import { FC } from "react"
+import * as Lib from './lib';
+import { Header } from "../header";
+
+export const AppsLayout: FC = ({ children }): JSX.Element => {
+
+  return (
+    <Lib.S.AppsLayoutContainer>
+      <Header />
+      <div id='app'>
+        {children &&
+          children
+        }
+      </div>
+    </Lib.S.AppsLayoutContainer>
+  )
+}

@@ -52,7 +52,7 @@
               "entryPoints": [
                 {
                   "html": "./src/index.html",
-                  "js": "./src/renderer.ts",
+                  "js": "./src/modules/electron/renderer.ts",
                   "name": "main_window"
                 }
               ]
@@ -68,26 +68,29 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.61",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
     "@electron-forge/maker-zip": "^6.0.0-beta.61",
-    "@electron-forge/plugin-webpack": "6.0.0-beta.61",
+    "@electron-forge/plugin-webpack": "^6.0.0-beta.61",
     "@types/crypto-js": "^4.0.2",
-    "@types/react": "^17.0.32",
-    "@types/react-dom": "^17.0.10",
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
     "@types/styled-components": "^5.1.15",
-    "@typescript-eslint/eslint-plugin": "^4.0.1",
-    "@typescript-eslint/parser": "^4.0.1",
-    "@vercel/webpack-asset-relocator-loader": "1.7.0",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "@vercel/webpack-asset-relocator-loader": "^1.7.0",
     "babel-plugin-styled-components": "^1.13.3",
-    "css-loader": "^6.0.0",
-    "electron": "15.3.0",
-    "eslint": "^7.6.0",
-    "eslint-plugin-import": "^2.20.0",
+    "css-loader": "^6.5.1",
+    "electron": "^15.3.1",
+    "eslint": "^8.2.0",
+    "eslint-plugin-import": "^2.25.3",
     "fork-ts-checker-webpack-plugin": "^6.0.1",
     "node-loader": "^2.0.0",
-    "style-loader": "^3.0.0",
+    "style-loader": "^3.3.1",
     "ts-loader": "^9.2.2",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.2",
+    "url-loader": "^4.1.1"
   },
   "dependencies": {
+    "@attorn/electron-storage": "^2.1.1",
+    "@attorn/electron-theme": "^2.0.2",
     "@attorn/react-explorer": "^1.0.6",
     "@manaflair/redux-batch": "^1.0.0",
     "@reduxjs/toolkit": "^1.6.2",
@@ -95,8 +98,8 @@
     "electron-squirrel-startup": "^1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-redux": "^7.2.5",
-    "redux": "^4.1.1",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
     "styled-components": "^5.3.3"
   }
 }

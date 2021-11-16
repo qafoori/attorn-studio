@@ -21,7 +21,7 @@
 // SOFTWARE.
 
 
-import * as types from '../../constants/action-types';
+import * as types from '../../common/constants/action-types';
 
 export const test = (payload: number) => {
   return {

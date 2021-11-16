@@ -21,22 +21,21 @@
 // SOFTWARE.
 
 
-import { createGlobalStyle } from "styled-components";
+import * as ReactDOM from 'react-dom';
+import { AppEntryPoint } from './entry';
+import { Provider } from 'react-redux';
+import { GlobalStyles } from '../../assets/styles/glob-styles'
+import store from '../../store';
+// import 'src/styles/font-definitions.css'
 
-export const GlobalStyles = createGlobalStyle`
+const render = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <GlobalStyles />
+      <AppEntryPoint />
+    </Provider>
+    , document.getElementById('attorn')
+  );
+}
 
-  :root {
-    --accent: #008599;
-  }
-
-  *,
-  *::after,
-  *::before {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-  }
-
-`;
+render();

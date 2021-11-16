@@ -23,12 +23,24 @@
 
 import { FC } from 'react';
 import * as Lib from './lib';
+import { Icon } from '../../../../../@attorn-react-components/src';
 
 export const Header: FC = (): JSX.Element => {
 
   return (
     <Lib.S.HeaderContainer>
-      
+      <Icon name="white-back-logo" size={34} className="logo" />
+
+      <Lib.C.MenuItem title='Dashboard' />
+
+      <Lib.C.MenuItem title='Spaces'>
+        something
+      </Lib.C.MenuItem>
+
+      <Lib.C.MenuItem title='Settings' />
+      <Lib.C.MenuItem title='Help' />
+      <Lib.C.MenuItem title='Store' />
+
     </Lib.S.HeaderContainer>
   )
 }

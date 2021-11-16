@@ -21,21 +21,27 @@
 // SOFTWARE.
 
 
-import * as ReactDOM from 'react-dom';
-import { AppEntryPoint } from './entry';
-import { Provider } from 'react-redux';
-import { GlobalStyles } from './styles/glob-styles';
-import store from './store';
+import { createGlobalStyle } from "styled-components";
+import UbuntuRegular from '../fonts/Ubuntu-Regular.ttf';
+import UbuntuMedium from '../fonts/Ubuntu-Medium.ttf';
 
-const render = () => {
+export const GlobalStyles = createGlobalStyle`
+  @font-face { font-family: u-reg; src: url('${UbuntuRegular}') }
+  @font-face { font-family: u-med; src: url('${UbuntuMedium}') }
 
-  ReactDOM.render(
-    <Provider store={store}>
-      <GlobalStyles />
-      <AppEntryPoint />
-    </Provider>
-    , document.getElementById('attorn')
-  );
-}
+  :root {
+    --accent: #008599;
+    --f-reg: u-reg, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --f-med: u-med, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-render();
+  *, *::after, *::before {
+    box-sizing: border-box;
+    font-family: var(--f-reg);
+    user-select: none;
+  }
+
+  body {
+    margin: 0;
+  }
+`;

@@ -20,5 +20,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import { FC } from "react";
+import { APICaller } from "../../apps/api-caller";
+import { AppsLayout } from "../../common/layouts/apps-layout";
+import { useRender } from '../../common/hooks';
 
-export * as S from './styles';
+export const AppEntryPoint: FC = (): JSX.Element => {
+  const { didMount } = useRender();
+
+  return didMount ? <AppsLayout><APICaller /></AppsLayout> : <>loading...</>
+}

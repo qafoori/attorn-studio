@@ -21,20 +21,67 @@
 // SOFTWARE.
 
 
-import { FC } from "react"
-import * as Lib from './lib';
-import { Header } from "../../../components/header";
+import styled from "styled-components";
 
-export const AppsLayout: FC = ({ children }): JSX.Element => {
+export const HeaderContainer = styled.div`
+  float: left;
+  width: 100%;
+  height: 46px;
+  background-color: #f3f3f3;
 
-  return (
-    <Lib.S.AppsLayoutContainer>
-      <Header />
-      <div id='app'>
-        {children &&
-          children
-        }
-      </div>
-    </Lib.S.AppsLayoutContainer>
-  )
-}
+  > svg.logo {
+    margin: 6px 10px 6px 6px;
+    float: left;
+  }
+`
+
+export const MenuItem = styled.div<{ hasChildren: boolean }>`
+  float: left;
+  height: 100%;
+  padding: 7px 0;
+  font-size: 1.1rem;
+  position: relative;
+
+  > p {
+    margin: 0;
+    padding: 6px 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    float: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    transition: all 100ms linear;
+
+    > span {
+      flex: 1;
+    }
+
+    > svg {
+      margin: 4px 0 0 3px;
+    }
+
+    &:hover {
+      background: #e2e2e2;
+    }
+
+    &:focus {
+      ${({ hasChildren: HC }) => HC ? 'background: #e2e2e2': null};
+
+      & + .children {
+        display: block;
+      }
+    }
+  }
+
+  > .children {
+    position: absolute;
+    left: 0;
+    top: 55px;
+    z-index: 1;
+    background: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 0px 6px 0 #0000001a;
+    display: none;
+  }
+`
