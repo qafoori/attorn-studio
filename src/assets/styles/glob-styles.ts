@@ -30,7 +30,7 @@ export const GlobalStyles = createGlobalStyle`
   @font-face { font-family: u-med; src: url('${UbuntuMedium}') }
 
   :root {
-    --accent: #008599;
+    color-scheme: dark;
     --f-reg: u-reg, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --f-med: u-med, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
@@ -42,6 +42,12 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    display: block;
     margin: 0;
+    min-width: 800px;
+    overflow-y: hidden;
+    min-height: 100vh;
+    max-height: 100vh;
   }
+
 `;

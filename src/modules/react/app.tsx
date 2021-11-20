@@ -26,7 +26,12 @@ import { AppEntryPoint } from './entry';
 import { Provider } from 'react-redux';
 import { GlobalStyles } from '../../assets/styles/glob-styles'
 import store from '../../store';
-// import 'src/styles/font-definitions.css'
+import '../../../i18n';
+
+console.log('_______________________________________')
+console.log('_______________________________________')
+console.log('_______________________________________')
+console.log('_______________________________________')
 
 const render = () => {
   ReactDOM.render(

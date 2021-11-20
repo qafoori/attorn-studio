@@ -24,12 +24,14 @@
 import { FC } from "react"
 import * as Lib from './lib';
 import { Header } from "../header";
+import { Sidebar } from "../sidebar";
 
 export const AppsLayout: FC = ({ children }): JSX.Element => {
 
   return (
     <Lib.S.AppsLayoutContainer>
       <Header />
+      <Sidebar />
       <div id='app'>
         {children &&
           children

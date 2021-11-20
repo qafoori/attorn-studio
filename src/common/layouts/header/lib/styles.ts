@@ -21,21 +21,46 @@
 // SOFTWARE.
 
 
-import styled from "styled-components";
+import styled from "styled-components"
+import * as Lib from '.'
+import { createQuery as cq } from "../../../constants/media-queries" 
+
 
 export const HeaderContainer = styled.div`
   float: left;
   width: 100%;
   height: 46px;
-  background-color: #f3f3f3;
+  background-color: var(--foreground);
+  display: flex;
+  align-items: center;
 
-  > svg.logo {
-    margin: 6px 10px 6px 6px;
-    float: left;
+  > .left {
+    width: auto;
+
+    > svg.logo {
+      margin: 6px 10px 6px 6px;
+      float: left;
+    }
+  }
+
+  > .right {
+    flex: 1;
+  }
+
+  ${cq(1150, 'max')} {
+    .searchBox {
+      border-radius: 5px;
+      margin: 7px 0 7px 11px;
+      padding: 8px 11px;
+
+      > p {
+        display: none;
+      }
+    }
   }
 `
 
-export const MenuItem = styled.div<{ hasChildren: boolean }>`
+export const MenuItem = styled.div<Pick<Lib.T.MenuItemProps, 'special'> & { hasChildren: boolean }>`
   float: left;
   height: 100%;
   padding: 7px 0;
@@ -52,6 +77,8 @@ export const MenuItem = styled.div<{ hasChildren: boolean }>`
     display: flex;
     align-items: center;
     transition: all 100ms linear;
+    background-color: ${({ special: S }) => S ? 'var(--accent_10)' : 'unset'};
+    color: ${({ special: S }) => S ? 'var(--accent)' : 'var(--foreground_color)'};
 
     > span {
       flex: 1;
@@ -62,11 +89,11 @@ export const MenuItem = styled.div<{ hasChildren: boolean }>`
     }
 
     &:hover {
-      background: #e2e2e2;
+      background-color: ${({ special: S }) => S ? 'var(--accent_05)' : 'var(--background_50)'};
     }
 
     &:focus {
-      ${({ hasChildren: HC }) => HC ? 'background: #e2e2e2': null};
+      ${({ hasChildren: HC }) => HC ? 'background: var(--background_50)' : null};
 
       & + .children {
         display: block;
@@ -79,9 +106,88 @@ export const MenuItem = styled.div<{ hasChildren: boolean }>`
     left: 0;
     top: 55px;
     z-index: 1;
-    background: #ffffff;
+    background: var(--foreground);
     border-radius: 6px;
     box-shadow: 0 0px 6px 0 #0000001a;
     display: none;
+  }
+`
+
+
+export const SearchBox = styled.div`
+  float: left;
+  padding: 7px 15px;
+  background: var(--background_50);
+  margin: 7px 0 7px 20px;
+  border-radius: 8px;
+  color: var(--foreground_color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+
+  > p {
+    margin: 0 0 0 10px;
+    flex: 1;
+  }
+
+  > svg, > p {
+    opacity: .7;
+  }
+`
+
+export const StatusesBox = styled.div`
+  float: right;
+  padding: 0 5px 0 0;
+
+  > .profile {
+    padding: 3px 6px;
+    height: 35px;
+    background-color: var(--accent_10);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    float: right;
+
+    > img {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      border: 1px solid var(--accent_10);
+    }
+
+    > svg {
+      margin: 0 0 0 6px;
+    }
+  }
+
+  > .sync {
+    padding: 3px 10px;
+    cursor: pointer;
+    height: 35px;
+    background-color: var(--accent_20);
+    border-radius: 5px;
+    float: right;
+    margin: 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  > .upgrade {
+    padding: 3px 6px;
+    height: 35px;
+    background-color: var(--accent_10);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    float: right;
+
+    > span {
+      color: var(--foreground_color);
+      margin: 0 4px 0 0;
+    }
   }
 `

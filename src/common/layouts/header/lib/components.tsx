@@ -4,15 +4,19 @@ import { Icon } from '../../../../../../@attorn-react-components/src';
 
 
 export const MenuItem: FC<Lib.T.MenuItemProps> = ({
-  title, children
+  title, children, special, style
 }): JSX.Element => {
 
   return (
-    <Lib.S.MenuItem hasChildren={typeof children !== 'undefined'}>
+    <Lib.S.MenuItem
+      hasChildren={typeof children !== 'undefined'}
+      special={special}
+      style={style}
+    >
       <p tabIndex={1}>
         <span>{title}</span>
         {children &&
-          <Icon name='chevron-down' color='black' size={15} />
+          <Icon name='chevron-down' color='var(--foreground_color)' size={15} />
         }
       </p>
 

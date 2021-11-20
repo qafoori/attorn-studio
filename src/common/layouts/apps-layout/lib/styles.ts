@@ -24,5 +24,14 @@
 import styled from "styled-components";
 
 export const AppsLayoutContainer = styled.div`
-  
+  float: left;
+  width: 100%;
+
+  > #app {
+    float: left;
+    width: 100%;
+    height: calc(100vh - 46px);
+    width: calc(100% - 50px);
+    background-color: var(--background);
+  }
 `;

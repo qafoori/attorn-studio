@@ -34,6 +34,11 @@ rules.push({
   use: [{ loader: 'url-loader' }],
 });
 
+rules.push({
+  test: /\.(png|jpe?g|gif|jp2|webp)$/,
+  use: [{ loader: 'url-loader' }],
+});
+
 module.exports = {
   module: {
     rules,

@@ -21,7 +21,7 @@
 // SOFTWARE.
 
 
-import '../react/app.tsx';
+import '../react/app';
 import { LogLicense } from '../../../scripts/license-logger';
 
 LogLicense();

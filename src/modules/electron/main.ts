@@ -21,11 +21,15 @@
 // SOFTWARE.
 
 
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, Menu } from 'electron';
 import { initializeTheme, installTheme, uninstallTheme, changeTheme } from '@attorn/electron-theme'
 import { AttornElectronTheme } from '@attorn/electron-theme'
 import { themes } from '../../common/constants/themes';
+import { MainProcesses } from './main-processes';
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
+
+
+
 
 
 if (require('electron-squirrel-startup')) {
@@ -40,12 +44,14 @@ const createWindow = (): void => {
       nodeIntegration: true,
       contextIsolation: false,
     },
-    minHeight: 250,
+    minHeight: 270,
     minWidth: 400
   });
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
   mainWindow.webContents.openDevTools();
 };
+
+
 
 app.on('ready', createWindow);
 
@@ -64,6 +70,7 @@ app.on('activate', () => {
 
 
 ipcMain.on('before-ready-to-show', ({ sender }) => {
+  console.log('before-ready-to-show')
   const { allThemes, activeTheme, root } = initializeTheme(themes);
   sender.send('get-css-root', root);
 })
@@ -77,7 +84,12 @@ ipcMain.on('uninstall-theme', (_, msg: AttornElectronTheme.Themes) => {
   uninstallTheme(msg.name);
 })
 
-// ipcMain.on('change-theme', ({ sender }, msg: string) => {
-//   const result = changeTheme(msg)
-//   sender.send('change-theme-result', result);
-// })
+ipcMain.on('change-theme', ({ sender }, msg: string) => {
+  const result = changeTheme(msg)
+  sender.send('change-theme-result', result);
+})
+
+
+
+
+MainProcesses(app);

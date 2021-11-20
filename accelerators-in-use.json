@@ -1,0 +1,15 @@
+{
+  "CommandOrControl": {
+    "directly": [
+      "a",
+      "c",
+      "e",
+      "m",
+      "d",
+      "h",
+      "t",
+      "i",
+      "s"
+    ]
+  }
+}
