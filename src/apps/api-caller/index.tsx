@@ -31,7 +31,7 @@ export const APICaller: FC = (): JSX.Element => {
     <Lib.S.APICaller>
       <Explorer
         className='asdasd'
-        minHeight='calc(100vh - 46px)'
+        height='calc(100vh - 46px)'
       />
     </Lib.S.APICaller>
   )
