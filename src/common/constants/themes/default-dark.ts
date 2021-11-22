@@ -9,6 +9,8 @@ export const defaultDark: AttornElectronTheme.Themes = {
     background: '181C23',
     background_50: '181C2380',
 
+    background_150: '161920',
+
     foreground: '222831',
     foreground_color: 'FFFFFFB3',
     foreground_50: '22283180'

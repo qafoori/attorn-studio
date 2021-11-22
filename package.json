@@ -70,6 +70,7 @@
     "@electron-forge/maker-zip": "^6.0.0-beta.61",
     "@electron-forge/plugin-webpack": "^6.0.0-beta.61",
     "@types/crypto-js": "^4.0.2",
+    "@types/node": "^16.11.9",
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
     "@types/styled-components": "^5.1.15",

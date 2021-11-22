@@ -32,6 +32,13 @@ export const APICaller: FC = (): JSX.Element => {
       <Explorer
         className='asdasd'
         height='calc(100vh - 46px)'
+        minWidth='180px'
+        styling={{
+          background: 'var(--background_150)',
+          optionHoverBackground: 'var(--foreground)',
+          optionsColor: 'var(--foreground_color)',
+          optionsBottomBorder: 'var(--foreground)'
+        }}
       />
     </Lib.S.APICaller>
   )

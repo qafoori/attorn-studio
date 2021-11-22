@@ -36,6 +36,7 @@
     "script/**/*",
     "license/**/*",
     "scripts/**/*",
+    "declare.d.ts"
   ],
   "exclude": [
     "node_modules"
