@@ -24,15 +24,18 @@
 import { FC } from 'react';
 import * as Lib from './lib';
 import { Explorer } from '../../../../@attorn-react-components/src';
+import { apiCallerExplorerThings } from '../../../../@attorn-react-components/src/ui-components/explorer/lib/typing';
 
 export const APICaller: FC = (): JSX.Element => {
 
   return (
     <Lib.S.APICaller>
       <Explorer
+        id='myExplorer'
         className='asdasd'
         height='calc(100vh - 46px)'
         minWidth='180px'
+        data={apiCallerExplorerThings}
         styling={{
           background: 'var(--background_150)',
           optionHoverBackground: 'var(--foreground)',
