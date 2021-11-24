@@ -49,5 +49,4 @@ export const GlobalStyles = createGlobalStyle`
     min-height: 100vh;
     max-height: 100vh;
   }
-
 `;
