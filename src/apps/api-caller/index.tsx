@@ -28,6 +28,11 @@ import { apiCallerExplorerThings } from '../../../../@attorn-react-components/sr
 
 export const APICaller: FC = (): JSX.Element => {
 
+
+  const addNew = () => {
+    return Math.random()
+  }
+
   return (
     <Lib.S.APICaller>
       <Explorer
@@ -36,6 +41,7 @@ export const APICaller: FC = (): JSX.Element => {
         height='calc(100vh - 46px)'
         minWidth='180px'
         data={apiCallerExplorerThings}
+        onAddNew={(name, type) => addNew()}
         styling={{
           background: 'var(--background_150)',
           optionHoverBackground: 'var(--foreground)',
