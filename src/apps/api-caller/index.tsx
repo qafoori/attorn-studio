@@ -23,32 +23,11 @@
 
 import { FC } from 'react';
 import * as Lib from './lib';
-import { Explorer } from '../../../../@attorn-react-components/src';
-import { apiCallerExplorerThings } from '../../../../@attorn-react-components/src/ui-components/explorer/lib/typing';
 
 export const APICaller: FC = (): JSX.Element => {
-
-
-  const addNew = () => {
-    return Math.random()
-  }
-
   return (
     <Lib.S.APICaller>
-      <Explorer
-        id='myExplorer'
-        className='asdasd'
-        height='calc(100vh - 46px)'
-        minWidth='180px'
-        data={apiCallerExplorerThings}
-        onAddNew={(name, type) => addNew()}
-        styling={{
-          background: 'var(--background_150)',
-          optionHoverBackground: 'var(--foreground)',
-          optionsColor: 'var(--foreground_color)',
-          optionsBottomBorder: 'var(--foreground)'
-        }}
-      />
+      api caller
     </Lib.S.APICaller>
   )
 }

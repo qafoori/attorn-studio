@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import * as Lib from '.';
 import { useWindowSize } from '../../../hooks/use-window-size';
 import { ipcRenderer } from 'electron';
+import * as EVENTS from '../../../constants/events';
 
 
 export const useSidebar = () => {
@@ -92,13 +93,13 @@ export const useSidebar = () => {
 
     const moreOptions = TOP_BUTTONS.slice(result + 1, TOP_BUTTONS.length)
 
-    ipcRenderer.send('setMoreOptions', JSON.stringify(moreOptions))
+    ipcRenderer.send(EVENTS.SET_MORE_OPTIONS, JSON.stringify(moreOptions))
     return result;
   }
 
 
   const showMoreOptions = () => {
-    ipcRenderer.send('moreOptions')
+    ipcRenderer.send(EVENTS.MORE_OPTIONS)
   }
 
 

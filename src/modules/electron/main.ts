@@ -27,7 +27,7 @@ import { AttornElectronTheme } from '@attorn/electron-theme'
 import { themes } from '../../common/constants/themes';
 import { MainProcesses } from './main-processes';
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
-
+import * as EVENTS from '../../common/constants/events';
 
 
 
@@ -53,15 +53,15 @@ const createWindow = (): void => {
 
 
 
-app.on('ready', createWindow);
+app.on(EVENTS.READY, createWindow);
 
-app.on('window-all-closed', () => {
+app.on(EVENTS.WINDOW_ALL_CLOSED, () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-app.on('activate', () => {
+app.on(EVENTS.ACTIVATE, () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
@@ -69,24 +69,24 @@ app.on('activate', () => {
 
 
 
-ipcMain.on('before-ready-to-show', ({ sender }) => {
-  console.log('before-ready-to-show')
+ipcMain.on(EVENTS.BEFORE_READY_TO_SHOW, ({ sender }) => {
+  console.log(EVENTS.BEFORE_READY_TO_SHOW)
   const { allThemes, activeTheme, root } = initializeTheme(themes);
-  sender.send('get-css-root', root);
+  sender.send(EVENTS.GET_CSS_ROOTS, root);
 })
 
 
-ipcMain.on('install-theme', (_, { name, theme }: AttornElectronTheme.Themes) => {
+ipcMain.on(EVENTS.INSTALL_THEME, (_, { name, theme }: AttornElectronTheme.Themes) => {
   installTheme({ name, theme });
 })
 
-ipcMain.on('uninstall-theme', (_, msg: AttornElectronTheme.Themes) => {
+ipcMain.on(EVENTS.UNINSTALL_THEME, (_, msg: AttornElectronTheme.Themes) => {
   uninstallTheme(msg.name);
 })
 
-ipcMain.on('change-theme', ({ sender }, msg: string) => {
+ipcMain.on(EVENTS.CHANGE_THEME, ({ sender }, msg: string) => {
   const result = changeTheme(msg)
-  sender.send('change-theme-result', result);
+  sender.send(EVENTS.CHANGE_THEME_RESULT, result);
 })
 
 

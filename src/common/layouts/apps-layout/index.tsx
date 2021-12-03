@@ -25,14 +25,38 @@ import { FC } from "react"
 import * as Lib from './lib';
 import { Header } from "../header";
 import { Sidebar } from "../sidebar";
+import { apiCallerExplorerThings } from '../../../../../@attorn-react-components/src/ui-components/explorer/lib/typing';
+import { Explorer } from '../../../../../@attorn-react-components/src';
+
 
 export const AppsLayout: FC = ({ children }): JSX.Element => {
+  const { on, states } = Lib.H.useAppsLayout();
+
 
   return (
     <Lib.S.AppsLayoutContainer>
       <Header />
       <Sidebar />
       <div id='app'>
+
+        <Explorer
+          id='myExplorer'
+          className='asdasd'
+          height='calc(100vh - 46px)'
+          minWidth='180px'
+          // data={apiCallerExplorerThings}
+          data={[]}
+          onAddNew={(name, type) => on.addNew()}
+          onRightClick={on.rightClick}
+          contextHandlerState={states.menuItemCaller.val}
+          styling={{
+            background: 'var(--background_150)',
+            optionHoverBackground: 'var(--foreground)',
+            optionsColor: 'var(--foreground_color)',
+            optionsBottomBorder: 'var(--foreground)'
+          }}
+        />
+
         {children &&
           children
         }

@@ -1,5 +1,6 @@
 import { App, Menu, ipcMain, MenuItemConstructorOptions } from 'electron'
 import * as Lib from '.';
+import * as EVENTS from '../../../constants/events';
 
 
 
@@ -7,7 +8,7 @@ export const sideBarMainProcess = (_app: App) => {
   let moreOptionsMenu = Menu.buildFromTemplate([])
 
 
-  ipcMain.on('setMoreOptions', ({ sender }, rowMsg: string) => {
+  ipcMain.on(EVENTS.SET_MORE_OPTIONS, ({ sender }, rowMsg: string) => {
     const msg = <Lib.T.Button[]>JSON.parse(rowMsg)
     const moreOptions: MenuItemConstructorOptions[] = [];
 
@@ -24,7 +25,7 @@ export const sideBarMainProcess = (_app: App) => {
 
 
 
-  ipcMain.on('moreOptions', ({ sender }) => {
+  ipcMain.on(EVENTS.MORE_OPTIONS, ({ sender }) => {
     moreOptionsMenu.popup()
   })
 
