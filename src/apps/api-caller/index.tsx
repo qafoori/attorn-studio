@@ -23,10 +23,20 @@
 
 import { FC } from 'react';
 import * as Lib from './lib';
+import { ipcRenderer } from 'electron'
+import * as EVENTS from '../../common/constants/events';
 
 export const APICaller: FC = (): JSX.Element => {
+
+  const setTheme = (theme: 'default-dark' | 'default-light') => {
+    ipcRenderer.send(EVENTS.CHANGE_THEME, theme)
+  }
+
+
   return (
     <Lib.S.APICaller>
+      <button onClick={() => setTheme('default-dark')}>dark</button>
+      <button onClick={() => setTheme('default-light')}>light</button>
       api caller
     </Lib.S.APICaller>
   )
