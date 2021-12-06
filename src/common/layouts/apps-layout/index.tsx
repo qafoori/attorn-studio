@@ -44,13 +44,14 @@ export const AppsLayout: FC = ({ children }): JSX.Element => {
           className='asdasd'
           height='calc(100vh - 46px)'
           minWidth='180px'
-          data={apiCallerExplorerThings}
-          // data={[]}
-          onAddNew={(name, type) => on.addNew()}
+          onReload={() => console.log('asdasd')}
+          data={[]}
+          onAddNew={async (name, type) => on.addNew()}
           onRightClick={on.rightClick}
           contextHandlerState={states.menuItemCaller.val}
           onChangeItems={console.log}
           onErrors={console.log}
+          beforeDelete={(id, name, type) => confirm(`are u sure?\nid: ${id}\nname: ${name}\ntype: ${type}`)}
           styling={{
 
           }}

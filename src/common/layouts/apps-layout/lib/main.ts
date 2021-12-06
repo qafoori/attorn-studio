@@ -1,7 +1,7 @@
 import { App, Menu, ipcMain, MenuItemConstructorOptions } from 'electron'
 import * as EVENTS from '../../../constants/events';
 import * as Lib from '.';
-import { OnContextMenuPayloadTypes } from '../../../../../../@attorn-react-components/src/ui-components/explorer/lib/typing';
+import { OnContextMenuPayloadTypes, TimingEnabled } from '../../../../../../@attorn-react-components/src/ui-components/explorer/lib/typing';
 
 
 
@@ -11,8 +11,12 @@ export const AppsLayoutMainProcess = (_app: App) => {
     return reply(EVENTS.EXPLORER_ITEM_CONTEXT_MENU, method)
   }
 
+  ipcMain.on(EVENTS.EXPLORER_ITEM_RIGHT_CLICK, ({ reply }, msg: {
+    type: OnContextMenuPayloadTypes,
+    pasteStatus: boolean,
+    timingStatus: TimingEnabled
+  }) => {
 
-  ipcMain.on(EVENTS.EXPLORER_ITEM_RIGHT_CLICK, ({ reply }, msg: OnContextMenuPayloadTypes) => {
     const newItem: MenuItemConstructorOptions[] = [
       {
         label: 'New File',
@@ -71,7 +75,8 @@ export const AppsLayoutMainProcess = (_app: App) => {
       {
         label: 'Paste',
         accelerator: 'CommandOrControl+V',
-        click: () => replyToContextMenu(reply, 'paste')
+        click: () => replyToContextMenu(reply, 'paste'),
+        enabled: msg.pasteStatus
       }
     ]
 
@@ -79,19 +84,21 @@ export const AppsLayoutMainProcess = (_app: App) => {
       {
         label: 'Undo',
         accelerator: 'CommandOrControl+Z',
-        click: () => replyToContextMenu(reply, 'undo')
+        click: () => replyToContextMenu(reply, 'undo'),
+        enabled: msg.timingStatus.undo
       },
       {
         label: 'Redo',
         accelerator: 'CommandOrControl+Shift+Z',
-        click: () => replyToContextMenu(reply, 'redo')
+        click: () => replyToContextMenu(reply, 'redo'),
+        enabled: msg.timingStatus.redo
       },
     ]
 
     const breakLine: MenuItemConstructorOptions = { type: 'separator' }
 
     const combinedItems: MenuItemConstructorOptions[] = [];
-    switch (msg) {
+    switch (msg.type) {
       case 'file':
         combinedItems.push(...[
           ...codeGenerator,

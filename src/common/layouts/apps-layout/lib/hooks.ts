@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { ipcRenderer } from 'electron';
 import * as EVENTS from '../../../constants/events';
 import * as Lib from '.';
-import { OnContextMenuPayloadTypes, OnContextMenuEvent, ContextMenuHandlerState } from '../../../../../../@attorn-react-components/src/ui-components/explorer/lib/typing';
+import { OnContextMenuPayloadTypes, OnContextMenuEvent, ContextMenuHandlerState, TimingEnabled } from '../../../../../../@attorn-react-components/src/ui-components/explorer/lib/typing';
 
 
 
 export const useAppsLayout = () => {
   const [rightClickedItem, setRightClickedItem] = useState<string | number>('');
   const [menuItemCaller, setMenuItemCaller] = useState<ContextMenuHandlerState>(null)
+
 
   ipcRenderer.removeAllListeners(EVENTS.EXPLORER_ITEM_CONTEXT_MENU)
 
@@ -20,10 +21,12 @@ export const useAppsLayout = () => {
   const onRightClick = (
     id: string | number,
     type: OnContextMenuPayloadTypes,
-    _evt: OnContextMenuEvent
+    _evt: OnContextMenuEvent,
+    pasteStatus: boolean,
+    timingStatus: TimingEnabled
   ) => {
     setRightClickedItem(id);
-    ipcRenderer.send(EVENTS.EXPLORER_ITEM_RIGHT_CLICK, type)
+    ipcRenderer.send(EVENTS.EXPLORER_ITEM_RIGHT_CLICK, { type, pasteStatus, timingStatus })
   }
 
 
@@ -46,7 +49,7 @@ export const useAppsLayout = () => {
       rightClick: onRightClick
     },
     states: {
-      menuItemCaller: { val: menuItemCaller, set: setMenuItemCaller }
+      menuItemCaller: { val: menuItemCaller, set: setMenuItemCaller },
     }
   }
 }
