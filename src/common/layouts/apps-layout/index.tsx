@@ -39,13 +39,13 @@ export const AppsLayout: FC = ({ children }): JSX.Element => {
       <Sidebar />
       <div id='app'>
 
-        <Explorer
+        {/* <Explorer
           id='myExplorer'
           className='asdasd'
           height='calc(100vh - 46px)'
           minWidth='180px'
           onReload={() => console.log('asdasd')}
-          data={[]}
+          data={apiCallerExplorerThings}
           onAddNew={async (name, type) => on.addNew()}
           onRightClick={on.rightClick}
           contextHandlerState={states.menuItemCaller.val}
@@ -55,7 +55,7 @@ export const AppsLayout: FC = ({ children }): JSX.Element => {
           styling={{
 
           }}
-        />
+        /> */}
 
         {children &&
           children

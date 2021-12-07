@@ -25,6 +25,7 @@ import { FC } from 'react';
 import * as Lib from './lib';
 import { ipcRenderer } from 'electron'
 import * as EVENTS from '../../common/constants/events';
+import { Resizable } from '../../../../@attorn-react-components/src'
 
 export const APICaller: FC = (): JSX.Element => {
 
@@ -35,9 +36,17 @@ export const APICaller: FC = (): JSX.Element => {
 
   return (
     <Lib.S.APICaller>
-      <button onClick={() => setTheme('default-dark')}>dark</button>
+
+      <div className='test'>
+        <Resizable
+          handlers={{ t: true, r: true, b: true, l: true, }}
+        >
+          <div className='testTest'></div>
+        </Resizable>
+      </div>
+      {/* <button onClick={() => setTheme('default-dark')}>dark</button>
       <button onClick={() => setTheme('default-light')}>light</button>
-      api caller
+      api caller */}
     </Lib.S.APICaller>
   )
 }
