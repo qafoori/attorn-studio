@@ -1,4 +1,4 @@
-import { IconNames } from "../../../../../../@attorn-react-components/src"
+import { IconNames } from "../../../../../../attorn-react-components/src"
 
 export type Button = {
   name: IconNames;

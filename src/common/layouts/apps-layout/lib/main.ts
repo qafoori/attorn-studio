@@ -1,7 +1,7 @@
 import { App, Menu, ipcMain, MenuItemConstructorOptions } from 'electron'
 import * as EVENTS from '../../../constants/events';
 import * as Lib from '.';
-import { OnContextMenuPayloadTypes, TimingEnabled } from '../../../../../../@attorn-react-components/src/ui-components/explorer/lib/typing';
+import { OnContextMenuPayloadTypes, TimingEnabled } from '../../../../../../attorn-react-components/src/ui-components/explorer/lib/typing';
 
 
 

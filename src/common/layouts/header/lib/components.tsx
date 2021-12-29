@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import * as Lib from '.'
-import { Icon } from '../../../../../../@attorn-react-components/src';
+import { Icon } from '../../../../../../attorn-react-components/src';
 
 
 export const MenuItem: FC<Lib.T.MenuItemProps> = ({

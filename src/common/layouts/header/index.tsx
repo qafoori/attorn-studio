@@ -23,7 +23,7 @@
 
 import { FC } from 'react';
 import * as Lib from './lib';
-import { Icon } from '../../../../../@attorn-react-components/src';
+import { Icon } from '../../../../../attorn-react-components/src';
 import { useTranslation } from 'react-i18next';
 import P from '../../../assets/images/profile.png'
 

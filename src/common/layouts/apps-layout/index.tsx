@@ -25,8 +25,8 @@ import { FC } from "react"
 import * as Lib from './lib';
 import { Header } from "../header";
 import { Sidebar } from "../sidebar";
-import { apiCallerExplorerThings } from '../../../../../@attorn-react-components/src/ui-components/explorer/lib/typing';
-import { Explorer } from '../../../../../@attorn-react-components/src';
+import { apiCallerExplorerThings } from '../../../../../attorn-react-components/src/ui-components/explorer/lib/typing';
+import { Explorer } from '../../../../../attorn-react-components/src';
 
 
 export const AppsLayout: FC = ({ children }): JSX.Element => {
@@ -39,7 +39,7 @@ export const AppsLayout: FC = ({ children }): JSX.Element => {
       <Sidebar />
       <div id='app'>
 
-        {/* <Explorer
+        <Explorer
           id='myExplorer'
           className='asdasd'
           height='calc(100vh - 46px)'
@@ -55,7 +55,7 @@ export const AppsLayout: FC = ({ children }): JSX.Element => {
           styling={{
 
           }}
-        /> */}
+        />
 
         {children &&
           children

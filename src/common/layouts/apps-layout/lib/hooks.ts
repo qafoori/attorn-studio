@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ipcRenderer } from 'electron';
 import * as EVENTS from '../../../constants/events';
 import * as Lib from '.';
-import { OnContextMenuPayloadTypes, OnContextMenuEvent, ContextMenuHandlerState, TimingEnabled } from '../../../../../../@attorn-react-components/src/ui-components/explorer/lib/typing';
+import { OnContextMenuPayloadTypes, OnContextMenuEvent, ContextMenuHandlerState, TimingEnabled } from '../../../../../../attorn-react-components/src/ui-components/explorer/lib/typing';
 
 
 
