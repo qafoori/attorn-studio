@@ -60,6 +60,7 @@ export const SidebarButton = styled.div<Pick<Lib.T.Button, 'active'>>`
     transition-delay: 0ms;
     opacity: 0;
     visibility: hidden;
+    z-index: 1;
   }
 
   &:hover {

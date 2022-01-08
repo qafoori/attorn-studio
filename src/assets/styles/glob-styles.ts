@@ -33,12 +33,22 @@ export const GlobalStyles = createGlobalStyle`
     color-scheme: dark;
     --f-reg: u-reg, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --f-med: u-med, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
+    /* TODO: */
+    /* move all these roots to constants/themes/*.ts */
+
+    --background_hover: #1e242f;
+    --background_border: #222831;
+    --foreground_hover: #ffffff0f;
+    --foreground_active: #ffffff17;
   }
 
   *, *::after, *::before {
     box-sizing: border-box;
     font-family: var(--f-reg);
     user-select: none;
+    color: var(--foreground_color);
   }
 
   body {
@@ -48,5 +58,31 @@ export const GlobalStyles = createGlobalStyle`
     overflow-y: hidden;
     min-height: 100vh;
     max-height: 100vh;
+  }
+  
+
+  /* ant design select component */
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    background-color: var(--foreground) !important;
+    border: none !important;
+  }
+  .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    box-shadow: none !important;
+  }
+  .ant-select-dropdown {
+    background-color: var(--foreground) !important;
+    animation-duration: 0s !important;
+    * {
+      animation-duration: 0s !important;
+    }
+  }
+  .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+    background-color: var(--foreground_hover) !important;
+  }
+  .ant-select-item {
+    transition: none !important;
+  }
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    background-color: var(--foreground_active) !important;
   }
 `;

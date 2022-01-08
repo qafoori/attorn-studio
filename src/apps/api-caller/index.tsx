@@ -25,16 +25,38 @@ import { FC } from 'react';
 import * as Lib from './lib';
 import { ipcRenderer } from 'electron'
 import * as EVENTS from '../../common/constants/events';
+import { Resizable } from '../../../../attorn-react-components/src';
 
 export const APICaller: FC = (): JSX.Element => {
-  const setTheme = (theme: 'default-dark' | 'default-light') => {
-    ipcRenderer.send(EVENTS.CHANGE_THEME, theme)
-  }
+  const setTheme = (theme: 'default-dark' | 'default-light') => ipcRenderer.send(EVENTS.CHANGE_THEME, theme);
+
+
+  const breadcrumbItems: Lib.T.BreadcrumbItem[] = [
+    { title: 'my workspace name', onClick: () => { } },
+    { title: 'some folder name', onClick: () => { } },
+    { title: 'another folder', onClick: () => { } },
+    { title: 'and thats it', onClick: () => { } },
+    { title: 'my post methid', onClick: () => { }, method: 'post' },
+  ]
+
+
   return (
     <Lib.S.APICaller>
-      <button onClick={() => setTheme('default-dark')}>dark</button>
-      <button onClick={() => setTheme('default-light')}>light</button>
-      api caller
+
+      <Resizable
+        h={{ default: 'calc(100vh - 46px)', max: 'calc(100vh - 46px)', min: 'calc(100vh - 46px)' }}
+        w={{ default: '50%', min: '30%', max: '70%' }}
+        r
+      >
+        <div className='tooler'>
+          <Lib.C.Breadcrumb items={breadcrumbItems} />
+          <Lib.C.URL />
+        </div>
+      </Resizable>
+
+
+      {/* <button onClick={() => setTheme('default-dark')}>dark</button>
+      <button onClick={() => setTheme('default-light')}>light</button> */}
     </Lib.S.APICaller>
   )
 }

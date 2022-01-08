@@ -28,10 +28,8 @@ import { Sidebar } from "../sidebar";
 import { apiCallerExplorerThings } from '../../../../../attorn-react-components/src/ui-components/explorer/lib/typing';
 import { Explorer } from '../../../../../attorn-react-components/src';
 
-
 export const AppsLayout: FC = ({ children }): JSX.Element => {
   const { on, states } = Lib.H.useAppsLayout();
-
 
   return (
     <Lib.S.AppsLayoutContainer>
@@ -52,14 +50,14 @@ export const AppsLayout: FC = ({ children }): JSX.Element => {
           onChangeItems={console.log}
           onErrors={console.log}
           beforeDelete={(id, name, type) => confirm(`are u sure?\nid: ${id}\nname: ${name}\ntype: ${type}`)}
-          styling={{
-
-          }}
+          styling={{}}
         />
 
-        {children &&
-          children
-        }
+        <div className="appChild">
+          {children &&
+            children
+          }
+        </div>
       </div>
     </Lib.S.AppsLayoutContainer>
   )

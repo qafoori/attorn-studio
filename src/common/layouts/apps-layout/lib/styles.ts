@@ -33,5 +33,16 @@ export const AppsLayoutContainer = styled.div`
     height: calc(100vh - 46px);
     width: calc(100% - 50px);
     background-color: var(--background);
+    display: flex;
+
+    > .appChild {
+      flex: 1;
+
+      > .tabsContainer {
+        width: 100%;
+        height: 35px;
+        border-bottom: 1px solid var(--background_border);
+      }
+    }
   }
 `;

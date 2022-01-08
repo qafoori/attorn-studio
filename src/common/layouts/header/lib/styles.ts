@@ -82,6 +82,7 @@ export const MenuItem = styled.div<Pick<Lib.T.MenuItemProps, 'special'> & { hasC
 
     > span {
       flex: 1;
+      color: ${({ special: S }) => S ? 'var(--accent)' : 'var(--foreground_color)'};
     }
 
     > svg {

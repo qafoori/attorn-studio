@@ -27,6 +27,7 @@ import { Provider } from 'react-redux';
 import { GlobalStyles } from '../../assets/styles/glob-styles'
 import store from '../../store';
 import '../../../i18n';
+import "antd/dist/antd.css";
 
 console.log('_______________________________________')
 console.log('_______________________________________')
