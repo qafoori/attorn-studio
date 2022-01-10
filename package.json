@@ -92,6 +92,7 @@
     "url-loader": "^4.1.1"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@attorn/electron-storage": "^2.1.1",
     "@attorn/electron-theme": "^2.0.2",
     "@attorn/react-explorer": "^1.0.6",

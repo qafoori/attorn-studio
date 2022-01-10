@@ -28,9 +28,9 @@ import * as EVENTS from '../../common/constants/events';
 import { Resizable } from '../../../../attorn-react-components/src';
 
 export const APICaller: FC = (): JSX.Element => {
+  const { get, on } = Lib.H.useAPICaller();
+
   const setTheme = (theme: 'default-dark' | 'default-light') => ipcRenderer.send(EVENTS.CHANGE_THEME, theme);
-
-
   const breadcrumbItems: Lib.T.BreadcrumbItem[] = [
     { title: 'my workspace name', onClick: () => { } },
     { title: 'some folder name', onClick: () => { } },
@@ -51,12 +51,18 @@ export const APICaller: FC = (): JSX.Element => {
         <div className='tooler'>
           <Lib.C.Breadcrumb items={breadcrumbItems} />
           <Lib.C.URL />
+          <Lib.C.Tabs tabs={get.toolerTabs} onTabSelect={on.toolerTabSelect} activeTab={get.toolerTab} />
         </div>
       </Resizable>
 
 
-      {/* <button onClick={() => setTheme('default-dark')}>dark</button>
-      <button onClick={() => setTheme('default-light')}>light</button> */}
+      <div className='result'>
+        <Lib.C.Tabs tabs={get.resultTabs} onTabSelect={on.resultTabSelect} activeTab={get.resultTab} />
+        <button onClick={() => setTheme('default-dark')}>dark</button>
+        <button onClick={() => setTheme('default-light')}>light</button>
+      </div>
+
+
     </Lib.S.APICaller>
   )
 }

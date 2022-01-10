@@ -39,9 +39,10 @@ export const GlobalStyles = createGlobalStyle`
     /* move all these roots to constants/themes/*.ts */
 
     --background_hover: #1e242f;
-    --background_border: #222831;
+    --background_border: #2c323c;
     --foreground_hover: #ffffff0f;
     --foreground_active: #ffffff17;
+    --foreground_placeholder: #ffffff3d;
   }
 
   *, *::after, *::before {
@@ -49,6 +50,8 @@ export const GlobalStyles = createGlobalStyle`
     font-family: var(--f-reg);
     user-select: none;
     color: var(--foreground_color);
+    animation-duration: 0s !important;
+    transition: none !important;
   }
 
   body {
@@ -71,10 +74,6 @@ export const GlobalStyles = createGlobalStyle`
   }
   .ant-select-dropdown {
     background-color: var(--foreground) !important;
-    animation-duration: 0s !important;
-    * {
-      animation-duration: 0s !important;
-    }
   }
   .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
     background-color: var(--foreground_hover) !important;
@@ -84,5 +83,29 @@ export const GlobalStyles = createGlobalStyle`
   }
   .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
     background-color: var(--foreground_active) !important;
+  }
+
+
+  /* ant design dropDown component */
+  .ant-btn-group {
+    > button {
+      background-color: var(--foreground);
+      border: none;
+      &::after, &::before {
+        content: unset !important;
+      }
+      &:nth-child(2) {
+        border-left: 1px solid #ffffff0d;
+      }
+    }
+    .ant-btn:hover, .ant-btn:focus, .ant-btn:active {
+      background-color: var(--foreground);
+    }
+  }
+  .ant-dropdown-menu {
+    background-color: var(--foreground) !important;
+  }
+  .ant-dropdown-menu-item:hover, .ant-dropdown-menu-submenu-title:hover {
+    background-color: var(--foreground_hover) !important;
   }
 `;

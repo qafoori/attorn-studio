@@ -37,12 +37,7 @@ export const AppsLayoutContainer = styled.div`
 
     > .appChild {
       flex: 1;
-
-      > .tabsContainer {
-        width: 100%;
-        height: 35px;
-        border-bottom: 1px solid var(--background_border);
-      }
+      display: flex;
     }
   }
 `;
