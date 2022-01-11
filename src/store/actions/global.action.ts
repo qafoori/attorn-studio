@@ -29,3 +29,17 @@ export const test = (payload: number) => {
     payload
   }
 }
+
+export const explorerWidth = (payload: string) => {
+  return {
+    type: types.EXPLORER_WIDTH,
+    payload
+  }
+}
+
+export const apiCallerToolerWidth = (payload: string) => {
+  return {
+    type: types.API_CALLER_TOOLER_WIDTH,
+    payload
+  }
+}

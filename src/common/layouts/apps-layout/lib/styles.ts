@@ -33,7 +33,8 @@ export const AppsLayoutContainer = styled.div`
     height: calc(100vh - 46px);
     width: calc(100% - 50px);
     background-color: var(--background);
-    display: flex;
+    /* display: flex; */
+    
 
     > .appChild {
       flex: 1;

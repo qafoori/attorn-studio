@@ -21,14 +21,22 @@
 // SOFTWARE.
 
 
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import * as Lib from './lib';
 import { ipcRenderer } from 'electron'
 import * as EVENTS from '../../common/constants/events';
 import { Resizable } from '../../../../attorn-react-components/src';
+import { API_CALLER_TOOLER_WIDTH } from '../../common/constants/settings';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/root-reducer';
+import { Global } from '../../store/actions'
 
 export const APICaller: FC = (): JSX.Element => {
   const { get, on } = Lib.H.useAPICaller();
+  const { apiCallerToolerWidth } = useSelector((rs: RootState) => rs.globals);
+  const dispatch = useDispatch();
+
+  useEffect(() => console.log(apiCallerToolerWidth), [apiCallerToolerWidth]);
 
   const setTheme = (theme: 'default-dark' | 'default-light') => ipcRenderer.send(EVENTS.CHANGE_THEME, theme);
   const breadcrumbItems: Lib.T.BreadcrumbItem[] = [
@@ -36,7 +44,7 @@ export const APICaller: FC = (): JSX.Element => {
     { title: 'some folder name', onClick: () => { } },
     { title: 'another folder', onClick: () => { } },
     { title: 'and thats it', onClick: () => { } },
-    { title: 'my post methid', onClick: () => { }, method: 'post' },
+    { title: 'my post method', onClick: () => { }, method: 'post' },
   ]
 
 
@@ -45,18 +53,21 @@ export const APICaller: FC = (): JSX.Element => {
 
       <Resizable
         h={{ default: 'calc(100vh - 46px)', max: 'calc(100vh - 46px)', min: 'calc(100vh - 46px)' }}
-        w={{ default: '50%', min: '30%', max: '70%' }}
+        w={{ default: API_CALLER_TOOLER_WIDTH, min: '30%', max: '90%' }}
         r
+        setSize={{ w: size => dispatch(Global.apiCallerToolerWidth(size)) }}
       >
         <div className='tooler'>
           <Lib.C.Breadcrumb items={breadcrumbItems} />
           <Lib.C.URL />
           <Lib.C.Tabs tabs={get.toolerTabs} onTabSelect={on.toolerTabSelect} activeTab={get.toolerTab} />
+
+          <Lib.C.BodyTable />
         </div>
       </Resizable>
 
 
-      <div className='result'>
+      <div className='result' style={{ width: `calc(100% - ${apiCallerToolerWidth}` }}>
         <Lib.C.Tabs tabs={get.resultTabs} onTabSelect={on.resultTabSelect} activeTab={get.resultTab} />
         <button onClick={() => setTheme('default-dark')}>dark</button>
         <button onClick={() => setTheme('default-light')}>light</button>

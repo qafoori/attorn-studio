@@ -22,3 +22,7 @@
 
 
 export const TEST = 'TEST';
+export const EXPLORER_WIDTH = 'EXPLORER_WIDTH';
+export const API_CALLER_TOOLER_WIDTH = 'API_CALLER_TOOLER_WIDTH';
+
+

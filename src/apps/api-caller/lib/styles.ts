@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const APICaller = styled.div`
-  display: flex;
   flex: 1;
+  display: block;
+  width: 100%;
+  float: left;
 
   .tooler {
     width: 100%;
@@ -11,7 +13,7 @@ export const APICaller = styled.div`
   }
 
   .result {
-    flex: 1;
+    float: left;
   }
 `;
 
@@ -210,3 +212,6 @@ export const Tabs = styled.div`
   }
 `;
 
+export const BodyTable = styled.div`
+
+`;

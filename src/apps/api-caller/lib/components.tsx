@@ -1,10 +1,14 @@
-import { FC } from "react";
+import React, { useState, useCallback, useRef, FC } from 'react';
 import * as Lib from '.';
 import { HorizontalScrollT, Icon } from "../../../../../attorn-react-components/src";
 import { HorizontalScroll } from '../../../../../attorn-react-components/src';
-import { Select, Dropdown, Menu } from 'antd';
+import { Select, Dropdown, Menu, Table } from 'antd';
 import { methods } from "../../../common/constants/methods";
 import { DownloadOutlined } from '@ant-design/icons';
+import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import update from 'immutability-helper';
+
 
 export const Breadcrumb: FC<Lib.T.BreadcrumbProps> = ({ items }) => (
   <Lib.S.Breadcrumb>
@@ -91,7 +95,6 @@ export const Tabs: FC<Lib.T.TabsProps> = ({ tabs, onTabSelect, activeTab }) => (
           className={`${tab.key} ${activeTab === tab.key}`}
           onClick={() => onTabSelect(tab.key)}
         >
-
           {tab.menu &&
             <Select
               showSearch
@@ -112,12 +115,184 @@ export const Tabs: FC<Lib.T.TabsProps> = ({ tabs, onTabSelect, activeTab }) => (
               {tab.name}
             </span>
           }
-
         </div>
       )}
-
-      {/* <div /> */}
     </HorizontalScroll>
   </Lib.S.Tabs>
 )
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const type = 'DraggableBodyRow';
+
+const DraggableBodyRow = ({ index, moveRow, className, style, ...restProps }: any) => {
+  const ref = useRef();
+  const [{ isOver, dropClassName }, drop] = useDrop({
+    accept: type,
+    collect: monitor => {
+      const { index: dragIndex } = monitor.getItem() || {} as any;
+      if (dragIndex === index) {
+        return {};
+      }
+      return {
+        isOver: monitor.isOver(),
+        dropClassName: dragIndex < index ? ' drop-over-downward' : ' drop-over-upward',
+      };
+    },
+    drop: (item: any) => {
+      moveRow(item.index, index);
+    },
+  });
+  const [, drag] = useDrag({
+    type,
+    item: { index },
+    collect: monitor => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+  drop(drag(ref));
+
+  return (
+    <tr
+      ref={ref}
+      className={`${className}${isOver ? dropClassName : ''}`}
+      style={{ cursor: 'move', ...style }}
+      {...restProps}
+    />
+  );
+};
+
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
+  },
+];
+
+
+
+
+export const BodyTable: FC = () => {
+  const [data, setData] = useState([
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+    },
+    {
+      key: '3',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+    },
+  ]);
+
+  const components = {
+    body: {
+      row: DraggableBodyRow,
+    },
+  };
+
+  const moveRow = useCallback(
+    (dragIndex, hoverIndex) => {
+      const dragRow = data[dragIndex];
+      setData(
+        update(data, {
+          $splice: [
+            [dragIndex, 1],
+            [hoverIndex, 0, dragRow],
+          ],
+        }),
+      );
+    },
+    [data],
+  );
+
+
+
+  return (
+    <Lib.S.BodyTable>
+      <DndProvider backend={HTML5Backend}>
+        <Table
+          columns={columns}
+          dataSource={data}
+          components={components}
+          onRow={(record, index) => ({
+            index,
+            moveRow,
+          }) as any}
+          pagination={false}
+        />
+      </DndProvider>
+    </Lib.S.BodyTable>
+  )
+}

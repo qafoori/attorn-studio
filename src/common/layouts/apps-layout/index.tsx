@@ -21,15 +21,23 @@
 // SOFTWARE.
 
 
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import * as Lib from './lib';
 import { Header } from "../header";
 import { Sidebar } from "../sidebar";
 import { apiCallerExplorerThings } from '../../../../../attorn-react-components/src/ui-components/explorer/lib/typing';
 import { Explorer } from '../../../../../attorn-react-components/src';
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../store/root-reducer";
+import { Global } from '../../../store/actions';
+import { EXPLORER_DEFAULT_WIDTH } from '../../constants/settings';
 
 export const AppsLayout: FC = ({ children }): JSX.Element => {
   const { on, states } = Lib.H.useAppsLayout();
+  const dispatch = useDispatch();
+  const { explorerWidth } = useSelector((rs: RootState) => rs.globals);
+
+  useEffect(() => console.log(explorerWidth), [explorerWidth]);
 
   return (
     <Lib.S.AppsLayoutContainer>
@@ -42,6 +50,7 @@ export const AppsLayout: FC = ({ children }): JSX.Element => {
           className='asdasd'
           height='calc(100vh - 46px)'
           minWidth='180px'
+          width={EXPLORER_DEFAULT_WIDTH}
           onReload={() => console.log('asdasd')}
           data={apiCallerExplorerThings}
           onAddNew={async (name, type) => on.addNew()}
@@ -51,6 +60,7 @@ export const AppsLayout: FC = ({ children }): JSX.Element => {
           onErrors={console.log}
           beforeDelete={(id, name, type) => confirm(`are u sure?\nid: ${id}\nname: ${name}\ntype: ${type}`)}
           styling={{}}
+          resizableProps={{ setSize: { w: size => dispatch(Global.explorerWidth(size)) } }}
         />
 
         <div className="appChild">

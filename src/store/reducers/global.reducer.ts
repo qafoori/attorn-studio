@@ -23,12 +23,15 @@
 
 import * as types from '../../common/constants/action-types';
 import { ReducerType } from '../../common/typing/reducer-payload.type';
+import { EXPLORER_DEFAULT_WIDTH, API_CALLER_TOOLER_WIDTH } from '../../common/constants/settings';
 
 const initialState = {
-  test: 0,
+  test: <number>0,
+  explorerWidth: <string>EXPLORER_DEFAULT_WIDTH,
+  apiCallerToolerWidth: <string>API_CALLER_TOOLER_WIDTH
 }
 
-export const globals = (state = initialState, { type, payload }: ReducerType) => {
+export const globals = (state = initialState, { type, payload }: ReducerType): typeof initialState => {
   switch (type) {
 
 
@@ -38,6 +41,17 @@ export const globals = (state = initialState, { type, payload }: ReducerType) =>
         test: payload
       };
 
+    case types.EXPLORER_WIDTH:
+      return {
+        ...state,
+        explorerWidth: payload
+      }
+
+    case types.API_CALLER_TOOLER_WIDTH:
+      return {
+        ...state,
+        apiCallerToolerWidth: payload
+      }
 
 
     default: return state
